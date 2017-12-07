@@ -8,6 +8,10 @@ dev-repo: "https://github.com/cryptosense/ppx_ulong.git"
 build: [
   ["jbuilder" "build" "-p" name "-j" jobs]
 ]
+build-test: [
+  ["jbuilder" "build" "-p" name "-j" jobs]
+  ["jbuilder" "runtest" "-j" jobs]
+]
 depends: [
   "integers"
   "jbuilder" {build}
