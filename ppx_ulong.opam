@@ -12,8 +12,9 @@ depends: [
   "integers"
   "jbuilder" {build}
   "ocaml-migrate-parsetree"
+  "oUnit" {test & >= "2.0.0"}
   "ppx_tools_versioned"
   "ppx_deriving" {test & >= "4.0" & < "5.0"}
-  "oUnit" {test & >= "2.0.0"}
+  "result" {>= "1.2"}
 ]
 available: [ocaml-version >= "4.02.0"]

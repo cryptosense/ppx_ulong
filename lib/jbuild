@@ -3,4 +3,5 @@
 (library
  ((name ppx_ulong_lib)
   (wrapped false)
-  (libraries (str))))
+  (libraries (result
+              str))))

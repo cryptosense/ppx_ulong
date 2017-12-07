@@ -17,11 +17,12 @@ let test_ulong_lit_string_of_string =
   let test expected s ctxt =
     let actual = Ppx_ulong_lib.ulong_lit_string_of_string s in
     assert_equal ~ctxt
-      ~cmp:[%eq: (string, string) result]
-      ~printer:[%show: (string, string) result]
+      ~cmp:[%eq: (string, string) Result.result]
+      ~printer:[%show: (string, string) Result.result]
       expected
       actual
   in
+  let open Result in
   "ulong_lit_string_of_string" >:::
   [ "1" >:= test (Ok "1")
   ; "1_000" >:= test (Ok "1000")
