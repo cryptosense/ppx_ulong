@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/cryptosense/ppx_ulong.svg?branch=master)](https://travis-ci.org/cryptosense/ppx_ulong)
+
 # ppx_ulong
 
 A ppx rewriter for integers' Unsigned.ULong literals
