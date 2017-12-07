@@ -1,0 +1,12 @@
+(jbuild_version 1)
+
+(executable
+ ((name test)
+  (libraries (oUnit
+              ppx_ulong_lib))
+  (preprocess (pps (ppx_deriving.std)))))
+
+(alias
+ ((name runtest)
+  (deps (test.exe))
+  (action (run ${<}))))

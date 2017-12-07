@@ -1,0 +1,19 @@
+opam-version: "1.2"
+maintainer: "Nathan Rebours <nathan@cryptosense.com>"
+author: "Nathan Rebours <nathan@cryptosense.com>"
+homepage: "https://github.com/cryptosense/ppx_ulong"
+bug-reports: "https://github.com/cryptosense/ppx_ulong/issues"
+license: "BSD-2"
+dev-repo: "https://github.com/cryptosense/ppx_ulong.git"
+build: [
+  ["jbuilder" "build" "-p" name "-j" jobs]
+]
+depends: [
+  "integers"
+  "jbuilder" {build}
+  "ocaml-migrate-parsetree"
+  "ppx_tools_versioned"
+  "ppx_deriving" {test & >= "4.0" & < "5.0"}
+  "oUnit" {test & >= "2.0.0"}
+]
+available: [ocaml-version >= "4.02.0"]

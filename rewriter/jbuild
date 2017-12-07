@@ -1,0 +1,10 @@
+(jbuild_version 1)
+
+(library
+ ((name ppx_ulong)
+  (public_name ppx_ulong)
+  (kind ppx_rewriter)
+  (libraries (integers
+              ocaml-migrate-parsetree
+              ppx_ulong_lib))
+  (preprocess (pps (ppx_tools_versioned.metaquot_405)))))
