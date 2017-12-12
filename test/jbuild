@@ -3,8 +3,7 @@
 (executable
  ((name test)
   (libraries (oUnit
-              ppx_ulong_lib))
-  (preprocess (pps (ppx_deriving.std)))))
+              ppx_ulong_lib))))
 
 (alias
  ((name runtest)
