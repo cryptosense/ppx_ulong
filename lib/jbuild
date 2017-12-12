@@ -3,5 +3,6 @@
 (library
  ((name ppx_ulong_lib)
   (wrapped false)
-  (libraries (result
+  (libraries (integers
+              result
               str))))

@@ -40,12 +40,43 @@ let test_ulong_lit_string_of_string =
   [ "1" >:= test (Ok "1")
   ; "1_000" >:= test (Ok "1000")
   ; "-1" >:= test (Error Ppx_ulong_lib.out_of_range_msg)
+  ; "18446744073709551616" >:= test (Error Ppx_ulong_lib.out_of_range_msg)
+  ]
+
+let test_too_large =
+  let test expected s ctxt =
+    let actual = Ppx_ulong_lib.too_large s in
+    assert_equal ~ctxt ~printer:(function true -> "true" | false -> "false") expected actual
+  in
+  "too_large" >:::
+  [ "Dec" >:::
+    [ "1" >:= test false
+    ; "9223372036854775807" >:= test false
+    ; "9223372036854775808" >:= test true
+    ; "18446744073709551616" >:= test true
+    ]
+  ; "Hex" >:::
+    [ "0x1" >:= test false
+    ; "0x7fffffffffffffff" >:= test false
+    ; "0x8000000000000000" >:= test true
+    ]
+  ; "Oct" >:::
+    [ "0o1" >:= test false
+    ; "0o777777777777777777777" >:= test false
+    ; "0o1000000000000000000000" >:= test true
+    ]
+  ; "Bin" >:::
+    [ "0b1" >:= test false
+    ; ("0b" ^ String.make 63 '1') >:= test false
+    ; ("0b1" ^ String.make 63 '0') >:= test true
+    ]
   ]
 
 let suite =
   "Ppx_ulong_lib" >:::
   [ test_strip_underscores
   ; test_ulong_lit_string_of_string
+  ; test_too_large
   ]
 
 let _ = run_test_tt_main suite
