@@ -2,13 +2,15 @@ open OUnit2
 
 let (>:=) s test = s >:: test s
 
+let equal_string s s' = String.compare s s' = 0
+
 let show_string = Printf.sprintf "%S"
 
 let equal_string_res s s' =
   let open Result in
   match s, s' with
-    | Ok s, Ok s' -> String.equal s s'
-    | Error s, Error s' -> String.equal s s'
+    | Ok s, Ok s' -> equal_string s s'
+    | Error s, Error s' -> equal_string s s'
     | Ok _, Error _
     | Error _, Ok _
       -> false
@@ -20,7 +22,7 @@ let show_string_res = function
 let test_strip_underscores =
   let test expected s ctxt =
     let actual = Ppx_ulong_lib.strip_underscores s in
-    assert_equal ~ctxt ~cmp:String.equal ~printer:show_string expected actual
+    assert_equal ~ctxt ~cmp:equal_string ~printer:show_string expected actual
   in
   "strip_underscores" >:::
   [ "Empty" >:: test "" ""
